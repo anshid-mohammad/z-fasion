@@ -1,0 +1,82 @@
+    <SEction>
+                    <h1 style="margin-top: 40px; font-family:'Times New Roman', Times, serif">Flash sale</h1>
+                     <!-- Card Component -->
+
+
+   
+    <!-- Custom CSS -->
+    <style>
+        /* Card Styling */
+        .card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border-radius: 15px;
+            overflow: hidden; /* Ensures images don't overflow */
+        }
+
+        /* Card Hover Effect */
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Image Styling */
+        .card-img-top {
+            height: 200px; /* Fixed height for images */
+            object-fit: cover; /* Ensures image maintains aspect ratio */
+        }
+
+        /* Button Styling */
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004b93;
+        }
+
+        /* Centering cards on medium and small screens */
+        @media (max-width: 768px) {
+            .row {
+                justify-content: center; /* Center the row */
+            }
+            .col-md-6 {
+                margin-bottom: 20px; /* Spacing between cards */
+            }
+        }
+
+        /* Ensuring the same style for extra small screens */
+        @media (max-width: 576px) {
+            .col-sm-6 {
+                margin-bottom: 20px; /* Spacing between cards */
+            }
+        }
+    </style>
+
+
+<div class="container" style="margin-top: 14px;">
+    <div class="row">
+   
+        
+
+        <!-- Second Card -->
+
+         {{#each products}}
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-4"> <!-- 4 on large, 2 on medium, 2 on small -->
+            <div class="card">
+                <img  src="/product-images/{{this._id}}.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{this.Name}}</h5>
+                   <p  class="card-text">Rs.{{this.Price}}</p>
+
+                    <p class="card-text">{{this.Description}}</p>
+                    {{!-- <a href="/add-to-cart/{{this._id}}" class="btn btn-primary">Add To Cart</a> --}}
+                    <button onclick="addToCart('{{this._id}}')"  class="btn btn-primary" >Add to Cart</button>
+                        {{!-- <button onclick="addToCart('{{this._id}}')" class="btn btn-primary mt-auto">Add to cart</button> --}}
+
+                </div>
+            </div>
+        </div>
+         {{/each}}

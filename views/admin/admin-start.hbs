@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Half Circle Design</title>
+    <style>
+        .custom-button {
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Center text vertically */
+            text-align: center; /* Center text horizontally */
+            height: 3rem;
+            margin-top: 2rem;
+            background-color: #c58e58; /* Custom background color */
+            color: rgb(255, 255, 255); /* Text color */
+            border: none; /* No border */
+            border-radius: 30px; /* Rounded corners */
+            padding: 10px 20px; /* Padding for size */
+            font-size: 1rem; /* Base font size */
+            transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+        }
+
+        @media (min-width: 576px) {
+            .custom-button {
+                padding: 22px 44px;
+                font-size: 1.75rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .custom-button {
+                padding: 25px 50px;
+                font-size: 2rem;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .custom-button {
+                padding: 30px 60px;
+                font-size: 2.25rem;
+            }
+        }
+
+        .custom-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .custom-button:active {
+            transform: scale(0.95);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #ffffff;
+            overflow: hidden;
+        }
+
+        .container {
+            background-color: #ffffff;
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main {
+            background-color: rgb(255, 255, 255);
+            text-align: center;
+            padding: 40px;
+            border-radius: 8px;
+        }
+
+        .logo {
+            width: 300px; /* Increased size of the logo */
+            height: auto;
+            margin-bottom: 25px; /* Increased space between logo and text */
+        }
+
+        .custom-font {
+            font-family: initial;
+            font-size: 40px;
+           letter-spacing: 5px; /* Space between letters */
+            color: #936e00; /* Dark gray text color */
+            text-shadow: 1px 1px 2px #999; /* Subtle text shadow */
+            margin: 10px 0; /
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main">
+            <img class="logo" src="/images/logo.png" alt="Logo">
+            <h1 class="custom-font ">Z FASHION.admin panel</h1>
+        <a href="/admin-login"><button class="custom-button" type="button">LET'S START</button></a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

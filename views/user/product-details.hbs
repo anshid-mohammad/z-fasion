@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View details of the product, including pricing, discounts, and specifications.">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+            padding: 20px;
+        }
+
+        .product-image img {
+            width: 100%;
+            max-width: 350px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #343a40;
+            margin-bottom: 10px;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #6c757d; /* Gray color for the original price */
+            font-size: 1.4rem;
+        }
+
+        .discounted-price {
+            font-size: 1.8rem;
+            color: #28a745; /* Green color for the discounted price */
+            margin-bottom: 15px;
+        }
+
+        .product-description {
+            font-family: initial;
+            font-size: 1.1rem;
+            color: #495057;
+            margin-bottom: 10px;
+        }
+
+        .product-info {
+            background-color: #ffffff;
+            padding: 25px;
+            margin-top: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .discount-badge {
+            background-color: #d9534f;
+            color: #ffffff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .btn-addcart {
+            background-color: #936e00;
+            border: none;
+            font-size: 1.2rem;
+            padding: 12px 20px;
+            border-radius: 5px;
+            color: #fff;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-addcart:hover {
+            background-color: #007bff;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .product-title {
+                font-size: 1.5rem;
+            }
+
+            .original-price, .discounted-price {
+                font-size: 1.3rem;
+            }
+
+            .product-description {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <!-- Product Image Section -->
+        <div class="col-md-6 text-center">
+            <div class="product-image">
+                <img src="/product-images/{{proData._id}}.jpg" alt="{{proData.Name}} image" loading="lazy">
+            </div>
+        </div>
+        
+        <!-- Product Details Section -->
+        <div class="col-md-6">
+            <h2 style="font-family: initial;" class="product-title">{{proData.Name}}</h2>
+
+            {{#if proData.Discount}}
+                <div class="discount-badge">
+                    {{proData.Discount}}% OFF
+                </div>
+                <div class="price-container">
+                    <p class="card-text original-price">&#8377; {{proData.Price}}</p>
+                    <p class="card-text discounted-price">&#8377; {{proData.discountedPrice}}</p>
+                </div>
+            {{else}}
+                <p class="card-text">&#8377; {{proData.Price}}</p>
+            {{/if}}
+
+            <p class="product-description"><strong>Details:</strong> {{proData.Details}}</p>
+            <p class="product-description"><strong>Size:</strong> {{proData.size}}</p>
+            <p class="product-description"><strong>Category:</strong> {{proData.Category}}</p>
+           
+            <!-- Add to Cart Button -->
+            <button onclick="addToCart('{{proData._id}}')" class="btn btn-addcart mt-3" aria-label="Add {{proData.Name}} to cart">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+    // Example of addToCart function
+    function addToCart(productId) {
+        // Implement your add to cart functionality here
+        console.log(`Product with ID ${productId} added to cart.`);
+        // You might want to send an AJAX request to the server to handle the cart operation
+    }
+</script>
+</body>
+</html>

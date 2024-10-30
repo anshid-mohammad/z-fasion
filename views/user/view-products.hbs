@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z Fashion</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/navbar.css' />
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        /* Navbar Styling */
+        
+        
+        .menu {
+            display: flex;
+            gap: 20px;
+            color: #936e00;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .menu a, .navbar a {
+            color: #936e00;
+            text-decoration: none;
+            padding: 14px 20px;
+        }
+        .menu a:hover, .navbar a:hover {
+            background-color: #d5b87d;
+            border-radius: 5px;
+        }
+        /* Toggle Button Styling */
+        
+       
+        /* Product Card Styling */
+        .card {
+            float: left;
+            width: 20rem;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+        .card-body {
+            text-align: center;
+        }
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #ff4d4d;
+            color: white;
+            padding: 5px 10px;
+            font-weight: bold;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .price-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .original-price {
+            text-decoration: line-through;
+            color: red;
+            margin-right: 8px;
+        }
+        .discounted-price {
+            color: #936e00;
+            font-weight: bold;
+        }
+        .btn-addcart {
+            background-color: #936e00;
+            color: white;
+        }
+        .btn-addcart:hover, .btn-details:hover {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-details {
+            background-color: #d5b87d;
+            color: white;
+        }
+        /* Search Bar Styling */
+        .search-bar {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .search-bar input {
+            width: 60%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #d5b87d;
+        }
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: rgb(234, 222, 196);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                z-index: 2;
+            }
+            .menu.active {
+                display: flex;
+            }
+            .toggle-button {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Search Bar -->
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search for categories..." onkeyup="filterProducts()">
+        </div>
+    </div>
+
+    <!-- Product Cards -->
+    <div class="container" style="margin-top: 14px;">
+        <div class="row" id="productContainer">
+            {{#each products}}
+            <div style="font-family: inherit; font-weight: ;" class="col-lg-3 col-md-6 col-sm-6 mb-4 product-item" data-category="{{this.Category}}">
+                <div class="card">
+                    <img src="/product-images/{{this._id}}.jpg" class="card-img-top" alt="{{this.Name}}">
+                    <div class="card-body">
+                        {{#if this.Discount}}
+                        <div class="discount-badge">{{this.Discount}}% OFF</div>
+                        <div class="price-container">
+                            <p class="card-text original-price">&#8377; {{this.Price}}</p>
+                            <p class="card-text discounted-price">&#8377; {{this.discountedPrice}}</p>
+                        </div>
+                        {{else}}
+                        <p class="card-text" style="font-family: inherit; font-weight: bolder; color: #936e00;" >&#8377; {{this.Price}}</p>
+                        {{/if}}
+                        <h5 class="card-title" style="font-family: initial; ">{{this.Name}}</h5>
+                        <p class="card-text" style="font-family: inherit; color: #40403f;">{{this.Description}}</p>
+                        <p class="card-text" style="font-family: inherit;">{{this.Category}}</p>
+                        <button onclick="addToCart('{{this._id}}','{{this.collection}}')" class="btn btn-addcart">Add
+                            to Cart</button>
+                        <a href="/product-details/{{this._id}}" class="btn btn-details">Details</a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Filter products based on search input for categories
+        function filterProducts() {
+            const searchValue = document.getElementById('searchInput').value.toLowerCase();
+            const productItems = document.getElementsByClassName('product-item');
+            Array.from(productItems).forEach(function (item) {
+                const productCategory = item.getAttribute('data-category').toLowerCase();
+                if (productCategory.includes(searchValue)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

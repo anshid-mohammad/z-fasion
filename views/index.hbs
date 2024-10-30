@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar</title>
+     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+        <link rel='stylesheet' href='/stylesheets/navbar.css' />
+
+  
+
+
+
+
+  <body>
+ <section>
+    <h1 style="margin-top: 10px; font-family: 'Times New Roman', Times, serif;">Category</h1>
+  <div class="container col-md-12">
+    <div class="row">
+      
+
+      <!-- Product 1 -->
+      <div class="products-section">
+        <div class="circle" id="circle1">
+          <img src="/images/shirts.png" alt="" height="90px  align-items:center">
+        </div>
+        <h3  class="product-type">T-Shirts</h3>
+        <script>
+          document.getElementById('circle1').addEventListener('click', function () {
+            window.location.href = 'login';
+          });
+        </script>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="products-section">
+        <div class="circle" id="circle2" >
+          <img src="/images/dress.png" alt="" style="height: 100px;">
+        </div>
+        <h3  class="product-type">Dress</h3>
+        <script>
+          document.getElementById('circle2').addEventListener('click', function () {
+            window.location.href = 'login.hbs';
+          });
+        </script>
+      </div>
+
+      <!-- Product 3 -->
+     
+<div class="products-section" style="text-align: center;"> <!-- Center the content -->
+  <div class="circle" id="circle3" style="display: inline-block;"> <!-- Circle image -->
+    <img src="/images/pant.png" alt="" style="height: 90px;">
+  </div>
+  <h3 class="product-type" >Pant</h3>
+  
+  <script>
+    document.getElementById('circle3').addEventListener('click', function () {
+      window.location.href = 'login';
+    });
+  </script>
+</div>
+
+      <!-- Product 4 -->
+      <div class="products-section">
+        <div class="circle" id="circle4">
+          <img src="/images/shirts.png" alt="" style="height: 90px;">
+        </div>
+        <h3  class="product-type">Shirts</h3>
+        <script>
+          document.getElementById('circle4').addEventListener('click', function () {
+            window.location.href = 'start.hbs';
+          });
+        </script>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+        <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+                 .circle {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: rgb(239, 226, 191);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      color: white;
+      font-size: 18px;
+          text-shadow: 1px 1px 2px #999;
+          display: inline-block;
+    }
+        .product-type{
+            font-family: initial;
+        }
+    
+        .circle:hover {
+            transform: scale(1.1); /* Scale up the circle on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow effect on hover */
+        }
+
+
+           .products-section{
+            width: 25%;
+           
+            text-align: center;
+         
+          }
+           .products-section2{
+         width: 22%;
+            height: 2rem;
+            display: flex;
+            justify-content: center; /* Horizontally center */
+            align-items: center; 
+            margin-top: 15px;
+            background-color: #0056b3;
+           }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgb(249, 246, 246); /* Set background to white */
+            padding: 10px 20px;
+            border-bottom: 1px solid #d5b87d; /* Optional: Add a bottom border */
+        }
+
+        .brand {
+            color: #d5b87d; /* Dark color for contrast */
+            font-size: 24px;
+        }
+
+        .menu {
+            gap: 20px;
+            color: #936e00;
+            font-size: 25px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center; /* Center the menu items */
+            flex: 1; /* Allow the menu to take available space */
+        }
+
+        .menu a {
+            color: #936e00;
+            font-size: 18px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navbar a {
+            color: #936e00; /* Dark color for links */
+            text-decoration: none;
+            padding: 14px 20px;
+        }
+
+        .navbar a:hover {
+            background-color:  #d5b87d; /* Light gray background on hover */
+            border-radius: 5px;
+        }
+
+        .toggle-button {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .toggle-button span {
+            height: 3px;
+            width: 25px;
+            background: #333; /* Dark color for toggle button */
+            margin: 4px;
+            transition: all 0.3s;
+        }
+          .fasion-navbar{
+        
+        font-size: 30px;
+            font-family: initial;
+            margin-left: 10px;
+            letter-spacing: 5px; /* Space between letters */
+            color: #936e00; /* Dark gray text color */
+            text-shadow: 1px 1px 2px #999; /* Subtle text shadow */
+            margin: 10px 0; /
+            }
+            .menu-name{
+                color: #936e00;
+            }
+
+        @media (max-width: 768px) {
+            .menu{
+                
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: rgb(234, 222, 196); /* Set dropdown background to white */
+                position: absolute;
+                top: 60px;
+                left: 0; /* Aligns the dropdown menu to the left */
+                z-index: 2;
+            }
+
+            .menu.active {
+                display: flex;
+                justify-content: center; /* Center the dropdown menu items */
+            }
+
+            .toggle-button {
+                display: flex;
+            }
+            .under-div {
+            height: 15px;
+            background-color: #d5b87d;
+            margin-bottom: 20px;
+        }
+           
+        }
+  
+ 
+           
+
+
+    
+     
+   
+    .card{
+        float: left;
+        width: 20rem;
+
+         
+      transition:transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      border-radius: 15px;
+    }
+
+    /* Card Hover Effect */
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Image Styling */
+    .card-img-top {
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      height: 200px;
+      object-fit: cover; /* Ensures images keep their aspect ratio */
+    }
+
+    /* Button Styling */
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-card:hover {
+      background-color: #0056b3;
+      border-color: #004b93;
+    }
+
+    /* Text Centering in Cards */
+    .card-body {
+      text-align: center;
+    }
+
+    /* Responsive margin for smaller screens */
+    @media (max-width: 576px) {
+      .card {
+        margin-bottom: 20px;
+      }
+    }
+      
+        
+        </style> 
+      </div>
+    </div>
+  
+   {{!-- // FLASH SALE PART// --}}
+        <SEction>
+                    <h1 style="margin-top: 40px; font-family:'Times New Roman', Times, serif">Flash sale</h1>
+                     <!-- Card Component -->
+
+
+   
+    <!-- Custom CSS -->
+    <style>
+        /* Card Styling */
+        .card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border-radius: 15px;
+            overflow: hidden; /* Ensures images don't overflow */
+        }
+
+        /* Card Hover Effect */
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Image Styling */
+        .card-img-top {
+            height: 200px; /* Fixed height for images */
+            object-fit: cover; /* Ensures image maintains aspect ratio */
+        }
+
+        /* Button Styling */
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004b93;
+        }
+
+        /* Centering cards on medium and small screens */
+        @media (max-width: 768px) {
+            .row {
+                justify-content: center; /* Center the row */
+            }
+            .col-md-6 {
+                margin-bottom: 20px; /* Spacing between cards */
+            }
+        }
+
+        /* Ensuring the same style for extra small screens */
+        @media (max-width: 576px) {
+            .col-sm-6 {
+                margin-bottom: 20px; /* Spacing between cards */
+            }
+        }
+    </style>
+
+
+<div class="container" style="margin-top: 14px;">
+    <div class="row">
+   
+        
+
+        <!-- Second Card -->
+
+         {{#each products}}
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-4"> <!-- 4 on large, 2 on medium, 2 on small -->
+            <div class="card">
+                <img src="{{this.image}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{this.Name}}</h5>
+                    <p class="card-text">{{this.Description}}</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+         {{/each}}
+
+        {{!-- <!-- Third Card (with actual image) -->
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-4"> <!-- 4 on large, 2 on medium, 2 on small -->
+            <div class="card">
+                <img src="/images/jacket.webp" class="card-img-top" alt="Amazed Lady">
+                <div class="card-body">
+                    <h5 class="card-title">Card Title 3</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fourth Card -->
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-4"> <!-- 4 on large, 2 on medium, 2 on small -->
+            <div class="card">
+                <img src="images/shirts.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card Title 4</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fifth Card -->
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-4"> <!-- 4 on large, 2 on medium, 2 on small -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card Title 5</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sixth Card -->
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-4"> <!-- 4 on large, 2 on medium, 2 on small -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card Title 6</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Seventh Card -->
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-4"> <!-- 4 on large, 2 on medium, 2 on small -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card Title 7</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Eighth Card -->
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-4"> <!-- 4 on large, 2 on medium, 2 on small -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card Title 8</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> --}}
+
+<!-- Bootstrap JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

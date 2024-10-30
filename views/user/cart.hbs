@@ -1,0 +1,334 @@
+{{!-- <section>
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table mt-5">
+                <thead class="table-secondary">
+                    <tr>
+                        <th scope="col">Image</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each products}}
+                    <tr>
+                        <td class="text-center">
+                            <img src="/product-images/{{this.product._id}}.jpg" alt="{{this.image}}" class="img-fluid"
+                                style="max-width: 8rem;">
+                        </td>
+                        <td class="px-4 py-3">
+                            <h6 style="font-weight: bold; color: #936e00;">{{this.product.Name}}</h6>
+                            <p class="d-none d-md-block"><small>{{this.product.Details}}</small></p>
+                            <!-- Hide details on mobile -->
+                        </td>
+                        <td style="width: 6rem;">
+                            {{#if this.product.discountedPrice}}
+                            <span
+                                style="text-decoration: line-through; color: red;  ">&#8377;{{this.product.Price}}</span>
+                            <span st>&#8377;{{this.product.discountedPrice}}</span>
+                            {{else}}
+                            <span style="font-weight: bolder;"> &#8377;{{this.product.Price}}</span>
+                            {{/if}}
+                        </td> --}}
+                        <section>
+                            <div class="container">
+                                <div class="table-responsive">
+                                    <table class="table mt-5">
+                                        <thead class="table-secondary">
+                                            <tr>
+                                                <th scope="col">Image</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Quantity</th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each products}}
+                                            <tr>
+                                                <td class="text-center">
+                                                   <img  src="/product-images/{{this.product._id}}.jpg"
+                                                        alt="{{this.image}}" class="img-fluid cart-image"
+                                                        style="max-width: 8rem;">
+                                                </td>
+                                                <td class="px-4 py-3">
+                                                    <h6 class="product-name" style="font-weight: bold; color: #936e00;">
+                                                        {{this.product.Name}}
+                                                    </h6>
+                                                    <p class="product-details"><small>{{this.product.Details}}</small>
+                                                    </p> <!-- Hide details on mobile -->
+                                                    <p class="product-details"><small> Category:{{this.product.Category}}</small>
+                                                    </p>
+                                            <p class="product-details"><small>size:{{this.product.size}}</small></p>
+
+
+                                                </td>
+                                                <td style="width: 6rem;">
+                                                    {{#if this.product.Discount}}
+                                                    <span class="original-price"
+                                                        style="text-decoration: line-through; color: red;">&#8377;{{this.product.Price}}</span>
+                                                    <span class="discounted-price"
+                                                        style="font-weight: bold;">&#8377;{{this.product.discountedPrice}}</span>
+                                                    {{else}}
+                                                    <span class="price"
+                                                        style="font-weight: bold;">&#8377;{{this.product.Price}}</span>
+                                                    {{/if}}
+                                                </td>
+                                                <td class="quantity-control" style="width: 10rem;">
+                                                    <div class="d-flex justify-content-center">
+                                                        <button class=" quantity-btn btn-sm"
+                                                            style="background-color: #e0b943;"
+                                                            onclick="changeQuantity('{{this._id}}', '{{this.product._id}}','{{../user._id}}',-1)">-</button>
+                                                        <span class="mx-2 quantity"
+                                                            id="{{this.product._id}}">{{this.quantity}}</span>
+                                                        <button class="quantity-btn btn-sm"
+                                                            style="background-color: #e0b943;"
+                                                            onclick="changeQuantity('{{this._id}}', '{{this.product._id}}','{{../user._id}}',1)">+</button>
+                                                    </div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <button class="remove-btn btn-outline-danger btn-sm"
+                                                        onclick="removeCartItem('{{this._id}}', '{{this.product._id}}', '{{../user._id}}')">Remove</button>
+                                                </td>
+                                            </tr>
+                                            {{/each}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="d-flex justify-content-end mt-4">
+                                    <h5 class="me-4" style="font-family: initial; font-weight: bold; color: #936e00;">
+                                        Total: Rs.<span id="total">{{totalValue}}</span></h5>
+                                </div>
+                                <div class="d-grid">
+                                    <a href="/place-order" class="place-btn btn mt-2 ml-auto"
+                                        style="background-color: #936e00; color: white; font-weight: bold; width: 230px;">Place
+                                        order</a>
+                                </div>
+                            </div>
+                            <style>
+                                .place-btn {
+                                    border-radius: 10px;
+                                }
+
+                                .place-btn:hover {
+                                    background-color: blue;
+                                    transform: scale(1.05);
+                                }
+                            </style>
+                        </section>
+
+                        <script>
+                            function changeQuantity(cartId, prodId, userId, count) {
+                                let quantity = parseInt(document.getElementById(prodId).innerHTML);
+                                count = parseInt(count);
+
+                                $.ajax({
+                                    url: '/change-product-quantity',
+                                    method: 'post',
+                                    data: {
+                                        user: userId,
+                                        cart: cartId,
+                                        product: prodId,
+                                        count: count,
+                                        quantity: quantity
+                                    },
+                                    success: (response) => {
+                                        if (response.removeProduct) {
+                                            alert('Product removed from cart');
+                                            location.reload();
+                                        } else {
+                                            document.getElementById(prodId).innerHTML = quantity + count;
+                                            document.getElementById('total').innerHTML = response.total;
+                                        }
+                                    }
+                                });
+                            }
+
+                            function removeCartItem(cartId, productId) {
+                                console.log("removeCartItem called with:", cartId, productId);
+                                $.ajax({
+                                    url: '/remove-cart-item',
+                                    method: 'post',
+                                    data: {
+                                        cartId: cartId,
+                                        productId: productId,
+                                    },
+                                    success: (response) => {
+                                        if (response) {
+                                            alert('Product removed from cart');
+                                            location.reload();
+                                        }
+                                    },
+                                    error: (err) => {
+                                        alert('Error removing product from cart.');
+                                    }
+                                });
+                            }
+                        </script>
+
+                        <style>
+                            /* Container Styling */
+                            .container {
+                                background-color: #ffffff;
+                                padding: 20px;
+                                border-radius: 15px;
+                                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                                margin-top: 30px;
+                                transition: all 0.3s ease;
+                            }
+
+                            .container:hover {
+                                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+                            }
+
+                            /* Table Styling */
+                            .table {
+                                border-collapse: separate;
+                                border-spacing: 0 10px;
+                            }
+
+                            .table thead {
+                                background-color: #faf3e0;
+                                border-radius: 10px;
+                            }
+
+                            .table td,
+                            .table th {
+
+                                font-weight: 500;
+                            }
+
+                            /* Product Image Styling */
+                            .cart-image {
+                                max-width: 70px;
+                                border-radius: 10px;
+                                border: 1px solid #f0f0f0;
+                            }
+
+                            /* Product Name & Details */
+                            .product-name {
+                                font-weight: bold;
+                                color: #7a5e2f;
+                            }
+
+                            .product-details {
+                                color: #787878;
+                                font-size: 0.9rem;
+                            }
+
+                            /* Price Styling */
+                            .original-price {
+                                text-decoration: line-through;
+                                color: #ff6f61;
+                                font-size: 0.9rem;
+                            }
+
+                            .discounted-price,
+                            .price {
+                                font-weight: bold;
+                                color: #34a853;
+                                font-size: 1rem;
+                            }
+
+                            /* Quantity Controls */
+                            .quantity-control {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                gap: 10px;
+                            }
+
+                            .quantity-btn {
+                                background-color: #f5b942;
+                                border: 2px solid #d1a037;
+                                color: #fff;
+                                font-weight: bold;
+                                padding: 5px 15px;
+                                border-radius: 8px;
+                                font-size: 1rem;
+                                cursor: pointer;
+                                transition: background-color 0.3s, transform 0.2s;
+                            }
+
+                            .quantity-btn:hover {
+                                background-color: #e1a937;
+                                transform: scale(1.1);
+                            }
+
+                            .quantity {
+                                font-weight: bold;
+                                font-size: 1.1rem;
+                                color: #333;
+                                padding: 0 10px;
+                                min-width: 40px;
+                                text-align: center;
+                                border-radius: 5px;
+                                background-color: #f8f9fa;
+                            }
+
+                            /* Remove Button */
+                            .remove-btn {
+                                background-color: #e8505b;
+                                color: white;
+                                border: none;
+                                padding: 8px 15px;
+                                border-radius: 8px;
+                                font-size: 0.9rem;
+                                cursor: pointer;
+                                transition: background-color 0.3s;
+                            }
+
+                            .remove-btn:hover {
+                                background-color: #d8434e;
+                            }
+
+                            /* Cart Total */
+                            .cart-total {
+                                display: flex;
+                                justify-content: flex-end;
+                                align-items: center;
+                                font-size: 1.2rem;
+                                color: #7a5e2f;
+                                font-weight: bold;
+                                margin-top: 20px;
+                            }
+
+                            /* Place Order Button */
+                            .place-order-container {
+                                display: flex;
+                                justify-content: flex-end;
+                                margin-top: 15px;
+                            }
+
+                            .place-order-btn {
+                                background-color: #7a5e2f;
+                                color: white;
+                                padding: 10px 20px;
+                                font-weight: bold;
+                                font-size: 1rem;
+                                border: none;
+                                border-radius: 10px;
+                                text-decoration: none;
+                                transition: background-color 0.3s, transform 0.3s;
+                            }
+
+                            .place-order-btn:hover {
+                                background-color: #5a3e1f;
+                                transform: scale(1.05);
+                            }
+
+                            /* Mobile Responsive Adjustments */
+                            @media (max-width: 768px) {
+                                .product-details {
+                                    display: none;
+                                    /* Hide details on smaller screens */
+                                }
+
+                                .place-order-btn {
+                                    width: 100%;
+                                    /* Make the Place Order button full-width */
+                                }
+                            }
+                        </style>

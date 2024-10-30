@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar</title>
+    <link rel='stylesheet' href='/stylesheets/navbar.css' />
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgb(249, 246, 246); /* Set background to white */
+            padding: 10px 20px;
+            border-bottom: 1px solid #d5b87d; /* Optional: Add a bottom border */
+            position: fixed; /* Fix the navbar at the top */
+            top: 0; /* Ensure it's at the top */
+            width: 100%; /* Full width */
+            z-index: 1000; /* Keep it above other content */
+        }
+
+        .brand {
+            color: #d5b87d; /* Dark color for contrast */
+            font-size: 24px;
+        }
+
+        .menu {
+            gap: 20px;
+            color: #936e00;
+            font-size: 25px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center; /* Center the menu items */
+            flex: 1; /* Allow the menu to take available space */
+            margin: 0 20px; /* Optional: add some horizontal margin */
+        }
+
+        .menu a {
+            color: #936e00;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .navbar a {
+            color: #936e00; /* Dark color for links */
+            text-decoration: none;
+            padding: 14px 20px;
+            font-size: 24px;
+        }
+
+        .navbar a:hover {
+            background-color:  #d5b87d; /* Light gray background on hover */
+            border-radius: 5px;
+        }
+
+        .toggle-button {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .toggle-button span {
+            height: 3px;
+            width: 25px;
+            background: #333; /* Dark color for toggle button */
+            margin: 4px;
+            transition: all 0.3s;
+        }
+
+        .fasion-navbar {
+            font-size: 30px;
+            font-family: initial;
+            margin-left: 10px;
+            letter-spacing: 5px; /* Space between letters */
+            color: #936e00; /* Dark gray text color */
+            text-shadow: 1px 1px 2px #999; /* Subtle text shadow */
+            margin: 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: rgb(234, 222, 196); /* Set dropdown background to white */
+                position: absolute;
+                top: 60px;
+                left: 0; /* Aligns the dropdown menu to the left */
+                z-index: 2;
+            }
+
+            .menu.active {
+                display: flex;
+                justify-content: center; /* Center the dropdown menu items */
+            }
+
+            .toggle-button {
+                display: flex;
+            }
+        }
+
+        .under-div {
+            height: 15px;
+            background-color: #d5b87d;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="navbar">
+        <div class="brand">
+            <img src="/images/logo.png" alt="Logo" class="nav-img">
+        </div>
+        <p class="fasion-navbar">Z FASHION.admin</p>
+
+        <div class="menu" id="menu">
+            <a class="menu-name" style="font-family: initial"; href="/admin">All Products</a>
+            <a class="menu-name" style="font-family: initial;" href="/admin/view-orders">All Orders</a>
+        </div>
+
+        <div class="dropdown" style="position: relative; margin-left: auto;">
+            <button class="btn dropdown-toggle" type="button" id="newDropdownButton" data-bs-toggle="dropdown" aria-expanded="false"
+                style="background-color:#936e00; border-radius: 8px; padding: 10px 20px; font-size: 16px; color: #f8f9fa; font-family: inherit; margin-left: 20px;">
+                {{#if admin}}
+                {{admin.name}}
+                {{else}}
+                Account
+                {{/if}}
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="newDropdownButton" 
+                style="background-color: #f8f9fa; border-radius: 8px; padding: 10px; min-width: 115px; text-align: center;">
+                {{#if admin}}
+                <li><a class="dropdown-item" href="/admin-logout" style="color:#936e00; font-weight: 500; padding: 8px;">Logout</a></li>
+                {{else}}
+                <li><a class="dropdown-item" href="/admin-login" style="color:#936e00; font-weight: 500; padding: 8px;">Login</a></li>
+                {{/if}}
+            </ul>
+        </div>
+
+        <div class="toggle-button" id="toggle-button">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</header>
+
+<div class="under-div"></div>
+
+<script>
+    const toggleButton = document.getElementById('toggle-button');
+    const menu = document.getElementById('menu');
+
+    toggleButton.addEventListener('click', () => {
+        menu.classList.toggle('active');
+    });
+</script>
+</body>
+</html>

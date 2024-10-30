@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordered Products</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light background for contrast */
+        }
+
+        .card {
+            transition: transform 0.2s; /* Smooth transition for hover effect */
+            border-radius: 10px; /* Rounded corners */
+        }
+
+        .card:hover {
+            transform: scale(1.05); /* Slightly enlarge the card on hover */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+        }
+
+        .card-img-top {
+            border-top-left-radius: 10px; /* Rounded corners for the image */
+            border-top-right-radius: 10px;
+            height: 200px; /* Fixed height for uniformity */
+            object-fit: cover; /* Cover the area, maintaining aspect ratio */
+        }
+
+        .card-body {
+            text-align: center; /* Centered text in card body */
+        }
+
+        .card-title {
+            font-size: 1.2rem; /* Increase title font size */
+            color: #343a40; /* Dark color for title */
+        }
+
+        .card-text {
+            color: #6c757d; /* Lighter color for price and quantity */
+        }
+
+        .card-text fw-normal {
+            font-weight: normal; /* Regular font weight for quantity */
+        }
+        .btn-details{
+          background-color:  #d5b87d;
+          color: white;
+        }
+        .btn-details:hover{
+           background-color: #007bff;
+          color: white;
+        }
+       
+    </style>
+</head>
+<body>
+
+<section>
+    <div class="container mt-5">
+        <div class="row">
+            {{#each orderedProductDetails}}
+            <div class="col-md-3 col-sm-6 col-12 my-3">
+                <div class="card h-100">
+                    <img src="/product-images/{{this._id}}.jpg" 
+                         class="card-img-top" 
+                         alt="{{this.productName}}"
+                         onerror="this.src='/images/default-product.jpg';">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{this.productName}}</h5>
+                        
+                        <p class="card-text">{{this.Catogery}}</p>
+                        <p class="card-text fw-normal">Quantity: {{this.quantity}}</p>
+
+                    </div>
+                        <a href="/product-details/{{this._id}}" class="btn btn-details">Details</a>
+
+                </div>
+            </div>
+            {{/each}}
+        </div>  
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

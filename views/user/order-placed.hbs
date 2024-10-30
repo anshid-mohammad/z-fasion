@@ -1,0 +1,174 @@
+{{!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <style>
+        body {
+            background-color: #f0f4f8; /* Light background for contrast */
+        }
+        .container {
+            padding: 50px 15px; /* Padding for the container */
+        }
+        .success-icon {
+            width: 80px; /* Icon size */
+            height: 80px; /* Icon size */
+        }
+        h1 {
+            color: #936e00; /* Blue color for the heading */
+        }
+        .btn-primary {
+            background-color: #936e00; /* Custom primary color */
+            border-color:#936e00; /* Custom border color */
+        }
+        .btn-outline-secondary {
+            border-color: #936e00; /* Custom border for outline button */
+            color:#936e00; /* Color for outline button text */
+        }
+        .btn-outline-secondary:hover {
+            background-color: #007BFF; /* Change background on hover */
+            color:#936e00; /* Change text color on hover */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 text-center">
+            <svg class="success-icon mt-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path fill="#63E6BE" d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z"/>
+            </svg>
+            <h1 class="display-5 fw-bold my-5">Order Placed Successfully!</h1>
+            <div class="col-lg-6 mx-auto">
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <a href="/orders" class="btn btn-primary btn-lg px-4 gap-3">See Orders</a>
+                    <a href="/" class="btn btn-outline-secondary btn-lg px-4">Go to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html> --}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful</title>
+    <style>
+        /* Body & Container Styling */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f1f1f1; /* Gray background */
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 50px 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Checkmark Circle */
+        .checkmark-circle {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background-color:  #936e00;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+            animation: pop 0.3s ease-out forwards;
+        }
+
+        /* Checkmark */
+        .checkmark {
+            width: 50px;
+            height: 25px;
+            border-radius: 5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #fff;
+            border-top: none;
+            border-right: none;
+            transform: rotate(-45deg);
+            animation: draw 0.5s ease-in-out forwards 0.4s;
+        }
+
+        /* Animations */
+        @keyframes pop {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+
+        @keyframes draw {
+            from { stroke-dashoffset: 50px; }
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* Success Message */
+        .message {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .subtext {
+            font-size: 16px;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        /* Buttons */
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            margin: 10px 5px;
+            padding: 12px 24px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #e0b943;;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="checkmark-circle">
+        <div class="checkmark"></div>
+    </div>
+    <div class="message">Payment Successful!</div>
+    <p class="subtext">Thank you for your purchase.</p>
+
+    <!-- Buttons -->
+    <div class="button-container">
+        <a href="/orders" class="button">View Order</a>
+        <a href="/" class="button">Go to Home</a>
+    </div>
+</div>
+
+</body>
+</html>

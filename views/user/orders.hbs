@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f4f8; /* Light background for contrast */
+        }
+        .container {
+            padding: 50px 15px; /* Padding for the container */
+        }
+        h2 {
+            color: #936e00; /* Blue color for the heading */
+            margin-bottom: 30px; /* Space below the heading */
+        }
+        table {
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+            border-collapse: collapse; /* Ensure borders collapse for a cleaner look */
+        }
+        th {
+            background-color: #007BFF; /* Custom header background */
+            color: white; /* Header text color */
+            text-align: center; /* Center align header text */
+        }
+        th, td {
+            vertical-align: middle; /* Center align cell contents */
+            text-align: center; /* Center align table data */
+        }
+        td {
+            color: #333; /* Dark text color for table data */
+        }
+        .btn-outline-primary {
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition for button hover */
+        }
+        .btn-outline-primary:hover {
+            background-color: #936e00; /* Button hover background color */
+            color: white; /* Button hover text color */
+        }
+        .total-value {
+            font-weight: bold;
+            color: #936e00; /* Color for total value */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            th, td {
+                font-size: 14px; /* Smaller text on smaller screens */
+            }
+            table {
+                font-size: 12px; /* Even smaller font size for very small screens */
+            }
+        }
+
+        @media (max-width: 576px) {
+            h2 {
+                font-size: 1.5rem; /* Smaller heading on mobile */
+            }
+            .btn {
+                width: 100%; /* Full width buttons on small screens */
+                margin-bottom: 10px; /* Space between buttons */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<section>
+    <div class="container">
+        <h2 class="text-center">Your Order Details</h2>
+        <table class="table mt-5 table-light table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Pincode</th>
+                    <th scope="col">Mobile</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Payment</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each orderDetails}}
+                <tr>
+                    <td style="width: 20rem;">{{this.date}}</td>
+                    <td>{{this.deliveryDetails.address}}</td>
+                    <td>{{this.deliveryDetails.pincode}}</td>
+                    <td>{{this.deliveryDetails.mobile}}</td>
+                    <td>&#8377;{{this.totalAmount}}</td>
+                    <td style="width: 6rem;">{{this.paymentMethod}}</td>
+                    <td style="width: 6rem;">{{this.status}}</td>
+                    <td>
+                        <a href="/view-ordered-products?orderId={{this._id}}" class="btn btn-outline-primary">View Products</a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        {{!-- Uncomment if needed --}}
+        {{!-- <div class="float-end">
+            <h5 class="float-start me-4">Total: Rs.<span id="total" class="total-value">{{totalValue}}</span></h5><br>
+        </div> --}}
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

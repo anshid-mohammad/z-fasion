@@ -1,0 +1,104 @@
+
+        /* Basic Reset */
+        * {
+            box-sizing: border-box; /* Ensures padding and border are included in element's total width and height */
+            margin: 0;
+            padding: 0;
+        }
+     
+
+        /* Main container styles */
+        .main-container {
+            display: flex;
+            justify-content: center; /* Center child elements horizontally */
+            align-items: center; /* Center child elements vertically */
+            height: 100vh; /* Full viewport height */
+            background-color: #ffffff; /* Light gray background */
+        }
+
+        .main {
+            background-color: white; /* White background for the main content */
+            text-align: center; /* Center text and image horizontally */
+            padding: 20px; /* Padding around content */
+          /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1); /* Subtle shadow for depth */
+        }
+
+        /* Style for the logo */
+        .logo {
+          margin-right: 24px;
+            width: 200px; /* Default size for large screens */
+            height: auto; /* Maintain aspect ratio */
+            margin-bottom: 20px; /* Space between logo and text */
+        }
+
+        /* Style for Z FASHION heading */
+        .custom-font {
+          font-family: initial;
+            font-size: 60px; /* Font size for large screens */
+            letter-spacing: 5px; /* Space between letters */
+            color: #936e00; /* Dark gray text color */
+            text-shadow: 1px 1px 2px #999; /* Subtle text shadow */
+            margin: 10px 0; /* Space above and below the text */
+        }
+
+        /* Responsive styles for tablets (max-width: 768px) */
+        @media (max-width: 768px) {
+            .logo {
+                width: 150px; /* Smaller logo */
+            }
+
+            .custom-font {
+                font-size: 36px; /* Smaller Z FASHION text */
+            }
+        }
+
+        /* Responsive styles for mobile devices (max-width: 480px) */
+        @media (max-width: 480px) {
+            .logo {
+                width: 100px; /* Even smaller logo for mobile */
+            }
+
+            .custom-font {
+                font-size: 28px; /* Smaller Z FASHION text */
+                letter-spacing: 2px; /* Tighter spacing */
+            }
+        }
+        .btn-start{
+
+           
+                background-color: #c58e58; /* Bootstrap primary color */
+                color: white; /* Text color */
+                border: none; /* No border */
+                border-radius: 30px; /* Rounded corners */
+                padding: 10px 20px; /* Padding for size */
+                font-size: 1rem; /* Base font size */
+                transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+                width: 100%; /* Full width *
+                margin-left: 8rem;
+                cursor: pointer;
+            }
+            @media (min-width: 768px) {  Medium devices (md) */
+                .btn-start{
+                    padding: 15px 30px; /* Larger padding */
+                    font-size: 1.25rem; /* Larger text */
+                }
+            }
+    
+            @media (min-width: 992px) { /* Large devices (lg) */
+                .btn-start{
+                    padding: 18px 36px; /* Even larger padding */
+                    font-size: 1.5rem; /* Even larger text */
+                }
+            }
+    
+            .btn-start:hover{
+                background-color: #7a5e03; /* Darker on hover */
+                transform: scale(1.05); /* Slight zoom effect */
+            }
+    
+            .btn-start:active{
+                transform: scale(0.95); /* Slight shrink on click */
+            }
+
+
