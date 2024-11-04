@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,63 +11,125 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
   <link rel='stylesheet' href='/stylesheets/login.css' />
   <style>
+    /* Text Styling */
+    .main-text {
+      color: #7c540e;
+      font-size: 3rem;
+    }
+
+    .subtext-login {
+      font-size: 1rem;
+      color: #7c540e;
+    }
+
+    /* Form Styling */
+    .form-control {
+      width: 100%;
+      padding: 12px;
+      border-radius: 25px;
+      border: 1px solid #e0e0e0;
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+      font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    /* Button Styling */
+    .btn-login {
+      
+      width: 70%; /* Set width to 50% of the container */
+      height: 3rem;
+      background-color: #c58e58;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      transition: background-color 0.3s, transform 0.2s;
+      margin: 0 auto; /* Center the button horizontally */
+    }
+
+    .btn-login:hover {
+      background-color: #7a5e03;
+      transform: scale(1.05);
+    }
+
+    .btn-login:active {
+      transform: scale(0.95);
+    }
+
+    /* Sign Up Section Styling */
+    .signup-container {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .new-account,
+    .signup-link {
+      color: #7c540e;
+    }
+
+    .signup-link {
+      color: #0b0b0b;
+      font-weight: bold;
+    }
+
+    /* Password Toggle */
     .password-toggle {
       cursor: pointer;
     }
-    /* Center the login button */
-    .login-btn-container {
-      text-align: center;
-    }
-    /* Add margin-top to move the link down */
-    .signup-link {
-     
-      display: block;
-      text-align: center;
+
+    /* Responsive font size adjustments */
+    @media (max-width: 768px) {
+      .main-text {
+        font-size: 2.5rem;
+      }
     }
   </style>
 </head>
 <body>
 
 <div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-5 col-md-8 col-sm-10 col-12">
-            <h1 class="main-text text-center">Login</h1>
-            <h4 class="text-center subtext-login">Hi! Welcome back, You’ve Been Missed</h4>
+  <div class="row justify-content-center">
+    <div class="col-lg-5 col-md-8 col-sm-10 col-12">
+      <h1 class="main-text text-center">Login</h1>
+      <h4 class="text-center subtext-login">Hi! Welcome back, You’ve Been Missed</h4>
 
-            <form action="" method="post"  class="mt-4">
-                <!-- Error Message -->
-                {{#if loginErr}}
-                <p class="error text-danger">{{loginErr}}</p>
-                {{/if}}
+      <form action="" method="post" class="mt-4">
+        <!-- Error Message -->
+        {{#if loginErr}}
+        <p class="error text-danger">{{loginErr}}</p>
+        {{/if}}
 
-                <!-- Email Input -->
-                <div class="form-group mb-3">
-                    <label class="email-color" for="email">Email address</label>
-                    <input type="email" class="form-control" id="email" name="Email" placeholder="Enter email" required>
-                </div>
-
-                <!-- Password Input with Show/Hide Feature -->
-                <div class="form-group mb-3">
-                    <label class="email-color" for="password">Password</label>
-                    <div class="input-group">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
-                        <span class="input-group-text password-toggle" onclick="togglePassword()">
-                            <i class="bi bi-eye" id="toggleIcon"></i> <!-- Bootstrap icon for eye -->
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Centered Login Button -->
-                <div class="login-btn-container">
-                    <button type="submit" class="btn-login btn-primary" style="width: 12rem;">Login</button>
-                </div>
-
-                <!-- Sign Up Link below the button -->
-                {{!-- <p class="new-account">Don’t Have an account ? </p> --}}
-                {{!-- <a href="/signup" class="signup-link">signup</a> --}}
-            </form>
+        <!-- Email Input -->
+        <div class="form-group mb-3">
+          <label class="email-color" for="email">Email address</label>
+          <input type="email" class="form-control" id="email" name="Email" placeholder="Enter email" required>
         </div>
+
+        <!-- Password Input with Show/Hide Feature -->
+        <div class="form-group mb-3">
+          <label class="email-color" for="password">Password</label>
+          <div class="input-group">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
+            <span class="input-group-text password-toggle" onclick="togglePassword()">
+              <i class="bi bi-eye" id="toggleIcon"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- Login Button -->
+        <div class="login-btn-container">
+          <button style="  margin-left: 63px" type="submit" class="btn-login">Login</button>
+        </div>
+
+        <!-- Sign Up Link in a single row below the button -->
+        <div class="signup-container d-flex justify-content-center align-items-center">
+          <p class="new-account mb-0 me-1">Don’t have an account?</p>
+          <a href="/signup" class="signup-link">Signup</a>
+        </div>
+      </form>
     </div>
+  </div>
 </div>
 
 <!-- Bootstrap 5 JS Bundle with Popper -->

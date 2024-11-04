@@ -143,6 +143,76 @@ module.exports = {
             resolve(cartItems);
         });
     },
+
+// getCartProducts: (userId) => {
+//     return new Promise(async (resolve, reject) => {
+//         try {
+//             let cartItems = await db.get().collection(collection.CART_COLLECTION).aggregate([
+//                 // Match the cart document for the given user ID
+//                 { $match: { user: new ObjectId(userId) } },
+                
+//                 // Deconstructs the products array to output one document per product
+//                 { $unwind: '$products' },
+                
+//                 // Project only the product ID (item) and quantity fields
+//                 {
+//                     $project: {
+//                         item: '$products.item',
+//                         quantity: '$products.quantity'
+//                     }
+//                 },
+                
+//                 // Lookup to join with the products collection to fetch product details
+//                 {
+//                     $lookup: {
+//                         from: collection.PRODUCT_COLLECTION,
+//                         localField: 'item',
+//                         foreignField: '_id',
+//                         as: 'product'
+//                     }
+//                 },
+                
+//                 // Unwind the product array to simplify access (each item has one product)
+//                 {
+//                     $project: {
+//                         item: 1,
+//                         quantity: 1,
+//                         product: { $arrayElemAt: ['$product', 0] }
+//                     }
+//                 },
+                
+//                 // Calculate the discounted price if a discount exists
+//                 {
+//                     $addFields: {
+//                         'product.discountedPrice': {
+//                             $cond: {
+//                                 if: { $gt: ['$product.Discount', 0] }, // Check if there's a discount
+//                                 then: {
+//                                     $round: [
+//                                         { 
+//                                             $multiply: [
+//                                                 { $toDouble: '$product.Price' }, // Convert Price to double
+//                                                 { $subtract: [1, { $divide: [{ $toDouble: '$product.Discount' }, 100] }] }
+//                                             ]
+//                                         },
+//                                         2 // Round to 2 decimal places
+//                                     ]
+//                                 },
+//                                 else: { $toDouble: '$product.Price' } // No discount, use original price
+//                             }
+//                         }
+//                     }
+//                 }
+//             ]).toArray();
+
+//             resolve(cartItems);
+//         } catch (error) {
+//             console.error("Error fetching cart products:", error); // Log the error for debugging
+//             reject("Failed to retrieve cart products."); // Reject with a user-friendly message
+//         }
+//     });
+// },
+
     
     getCartCount: (userId) => {
         return new Promise(async (resolve, reject) => {

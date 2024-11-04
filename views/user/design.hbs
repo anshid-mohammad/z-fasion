@@ -1,131 +1,173 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Full Page Background Image</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <style>
     * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    html, body {
+        height: 100%;
+        width: 100%;
+        overflow: hidden; /* Prevents scrolling */
+    }
+
+    .fullscreen-image {
+        background-image: url('/images/bg\ ful\ img.png'); /* Replace with your image path */
+        background-size: cover; /* Cover the entire area */
+        background-position: center; /* Center the image */
+        height: 100vh; /* Full viewport height */
+        display: flex; /* Use flexbox for centering */
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        position: relative; /* Position relative for overlay */
+        background-attachment: fixed; /* Keeps background fixed on scroll */
+    }
+
+    .overlay {
+        margin-left: 750px;
+        font-family: initial;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    h2 {
+        color: #e09c27;
+        font-weight: bolder;
+        font-family: initial;
+        font-size: 36px;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        letter-spacing: 1px;
+        line-height: 1.2;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .cta-button {
+        padding: 12px 24px;
+        background: linear-gradient(135deg, #ff6666, #ff3333);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+    }
+
+    .cta-button:hover {
+        background: linear-gradient(135deg, #ff3333, #ff1a1a);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .cta-button:active {
+        transform: translateY(1px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .cta-button:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(255, 102, 102, 0.5);
+    }
+
+    .cta-button::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 8px;
+        background: rgba(255, 102, 102, 0.2);
+        opacity: 0;
+        transition: opacity 0.3s;
+        z-index: -1;
+    }
+
+    .cta-button:hover::after {
+        opacity: 1;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+    a:link, a:visited {
+    text-decoration: none; /* No underline on normal or visited links */
+    color: inherit; /* Inherit color from button */
 }
 
-html, body {
-    height: 100%;
-    width: 100%;
-    overflow: hidden; /* Prevents scrolling */
-}
 
-.fullscreen-image {
-    background-image: url('/images/bg\ ful\ img.png'); /* Replace with your image path */
-    background-size: cover; /* Cover the entire area */
-    background-position: center; /* Center the image */
-    height: 100vh; /* Full viewport height */
-    display: flex; /* Use flexbox for centering */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    position: relative; /* Position relative for overlay */
-}
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+        .overlay {
+            margin-left: 0;
+            padding: 15px;
+        }
 
-.overlay {
-    
-      margin-left: 750px;
-    font-family: initial;
-    color: white; /* Text color */
-    text-align: center; /* Center text */
-    padding: 20px; /* Add some padding */
-    border-radius: 10px; /* Rounded corners for the overlay */
-}
+        h2 {
+            font-size: 30px;
+            padding: 5px;
+        }
 
-h2 {
+        .cta-button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    }
 
-    color: #6b4f00; /* New font color (darker brown) */
-    font-weight: bolder; /* Font weight */
-    font-family:initial; /* Font family */
-    font-size: 36px; /* Font size */
-    margin-bottom: 10px; /* Space between headings */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Shadow effect */
-    text-align: center; /* Center the text */
-    letter-spacing: 1px; /* Spacing between letters */
-    line-height: 1.2; /* Line height for better spacing */
-    padding: 10px; /* Padding around the text */
-    border-radius: 5px; /* Rounded corners for the background */
-}
+    @media (max-width: 768px) {
+        h2 {
+            font-size: 24px;
+        }
 
-/* Optional: Add hover effect */
-h2:hover {
-    color: #8f5f00; /* Change to a lighter brown/gold on hover */
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7); /* Darker shadow on hover */
-}
+        .cta-button {
+            font-size: 14px;
+            padding: 8px 16px;
+        }
+    }
 
+    @media (max-width: 576px) {
+        .fullscreen-image {
+            background-size: contain; /* Fit the image within the container on very small screens */
+        }
 
-.cta-button {
-    padding: 12px 24px; /* Increased padding for a larger button */
-    background: linear-gradient(135deg, #ff6666, #ff3333); /* Gradient background */
-    color: white; /* Button text color */
-    border: none; /* Remove border */
-    border-radius: 8px; /* Rounded corners for the button */
-    font-size: 18px; /* Increased font size */
-    font-weight: bold; /* Bold text for better visibility */
-    cursor: pointer; /* Cursor changes to pointer */
-    transition: background 0.3s, transform 0.2s, box-shadow 0.3s; /* Smooth transition for all states */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
-    text-transform: uppercase; /* Uppercase text */
-    letter-spacing: 1px; /* Slightly increased letter spacing */
-    position: relative; /* Positioning for pseudo-elements */
-}
+        h2 {
+            font-size: 20px;
+        }
 
-.cta-button:hover {
-    background: linear-gradient(135deg, #ff3333, #ff1a1a); /* Darker gradient on hover */
-    transform: translateY(-3px); /* Lift effect on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Darker shadow on hover */
-}
-
-.cta-button:active {
-    transform: translateY(1px); /* Slightly push down when clicked */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Reduce shadow on click */
-}
-
-.cta-button:focus {
-    outline: none; /* Remove outline */
-    box-shadow: 0 0 0 3px rgba(255, 102, 102, 0.5); /* Focus outline effect */
-}
-
-.cta-button::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 8px; /* Match border-radius */
-    background: rgba(255, 102, 102, 0.2); /* Light glow effect */
-    opacity: 0; /* Initially hidden */
-    transition: opacity 0.3s; /* Smooth transition */
-    z-index: -1; /* Behind the button */
-}
-
-.cta-button:hover::after {
-    opacity: 1; /* Show glow on hover */
-}
-
-
-
+        .cta-button {
+            font-size: 12px;
+            padding: 6px 12px;
+        }
+    }
 </style>
 <body>
     <form action="">
-    <div class="fullscreen-image">
-        <div class="overlay">
-            <h2>The Fashion App That...</h2>
-            <h2>Makes You Look Your Best.....!</h2>
-            <a href="/login" class="cta-button">Shop Now</a>
+        <div class="fullscreen-image">
+            <div class="overlay">
+                <h2>The Fashion App That...</h2>
+                <h2>Makes You Look Your Best.....!</h2>
+                <a href="/login" class="cta-button">Shop Now</a>
+            </div>
         </div>
-    </div>
     </form>
 </body>
-
 </html>

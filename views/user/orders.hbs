@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,33 +8,45 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f0f4f8; /* Light background for contrast */
+            background-color: #f8ebd4; /* Light background for contrast */
         }
         .container {
             padding: 50px 15px; /* Padding for the container */
+            border-radius: 15px; /* Rounded corners for the container */
+            background-color: white; /* White background for the main content */
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1); /* Shadow for depth */
         }
         h2 {
-            color: #936e00; /* Blue color for the heading */
+            color: #936e00; /* Color for the heading */
             margin-bottom: 30px; /* Space below the heading */
+            font-weight: bold; /* Bold text */
         }
         table {
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
             border-collapse: collapse; /* Ensure borders collapse for a cleaner look */
         }
         th {
             background-color: #007BFF; /* Custom header background */
             color: white; /* Header text color */
             text-align: center; /* Center align header text */
+            padding: 15px; /* Padding for table headers */
+            border-bottom: 2px solid #0056b3; /* Bottom border for header */
         }
         th, td {
             vertical-align: middle; /* Center align cell contents */
             text-align: center; /* Center align table data */
+            padding: 10px; /* Padding for table cells */
+            transition: background-color 0.3s; /* Smooth transition for hover */
         }
         td {
             color: #333; /* Dark text color for table data */
         }
+        tr:hover {
+            background-color: #e9ecef; /* Highlight row on hover */
+        }
         .btn-outline-primary {
             transition: background-color 0.3s, color 0.3s; /* Smooth transition for button hover */
+            padding: 8px 12px; /* Adjust padding for buttons */
+            border-radius: 5px; /* Rounded corners for buttons */
         }
         .btn-outline-primary:hover {
             background-color: #936e00; /* Button hover background color */
@@ -46,11 +59,14 @@
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
+            h2 {
+                font-size: 1.75rem; /* Adjust heading size on medium screens */
+            }
             th, td {
                 font-size: 14px; /* Smaller text on smaller screens */
             }
             table {
-                font-size: 12px; /* Even smaller font size for very small screens */
+                font-size: 12px; /* Further reduction in font size for very small screens */
             }
         }
 
@@ -62,6 +78,16 @@
                 width: 100%; /* Full width buttons on small screens */
                 margin-bottom: 10px; /* Space between buttons */
             }
+            td {
+                word-wrap: break-word; /* Break long words in table cells */
+                padding: 5px; /* Reduce padding for better spacing on mobile */
+            }
+            table {
+                font-size: 12px; /* Ensure text is still readable */
+            }
+            .container {
+                padding: 30px 10px; /* Reduced padding on mobile */
+            }
         }
     </style>
 </head>
@@ -70,36 +96,38 @@
 <section>
     <div class="container">
         <h2 class="text-center">Your Order Details</h2>
-        <table class="table mt-5 table-light table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Pincode</th>
-                    <th scope="col">Mobile</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Payment</th>
-                    <th scope="col">Status</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each orderDetails}}
-                <tr>
-                    <td style="width: 20rem;">{{this.date}}</td>
-                    <td>{{this.deliveryDetails.address}}</td>
-                    <td>{{this.deliveryDetails.pincode}}</td>
-                    <td>{{this.deliveryDetails.mobile}}</td>
-                    <td>&#8377;{{this.totalAmount}}</td>
-                    <td style="width: 6rem;">{{this.paymentMethod}}</td>
-                    <td style="width: 6rem;">{{this.status}}</td>
-                    <td>
-                        <a href="/view-ordered-products?orderId={{this._id}}" class="btn btn-outline-primary">View Products</a>
-                    </td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
+        <div class="table-responsive"> <!-- Make the table responsive -->
+            <table class="table mt-5 table-light table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Pincode</th>
+                        <th scope="col">Mobile</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Payment</th>
+                        <th scope="col">Status</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each orderDetails}}
+                    <tr>
+                        <td style="font-family: initial;" >{{this.date}}</td>
+                        <td style="font-family: initial;">{{this.deliveryDetails.address}}</td>
+                        <td style="font-family: initial;">{{this.deliveryDetails.pincode}}</td>
+                        <td style="font-family: initial;">{{this.deliveryDetails.mobile}}</td>
+                        <td style="font-family: initial;">&#8377;{{this.totalAmount}}</td>
+                        <td style="font-family: initial;">{{this.paymentMethod}}</td>
+                        <td style="font-family: initial;">{{this.status}}</td>
+                        <td>
+                            <a href="/view-ordered-products?orderId={{this._id}}" class="btn btn-outline-primary">View Products</a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
         {{!-- Uncomment if needed --}}
         {{!-- <div class="float-end">
             <h5 class="float-start me-4">Total: Rs.<span id="total" class="total-value">{{totalValue}}</span></h5><br>

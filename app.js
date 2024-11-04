@@ -14,13 +14,6 @@ const flash = require('connect-flash');
 
 var app = express();
 
-
-
-
-
-
-
-
 // Set view engine and directories
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');

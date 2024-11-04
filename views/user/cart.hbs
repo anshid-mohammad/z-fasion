@@ -1,37 +1,4 @@
-{{!-- <section>
-    <div class="container">
-        <div class="table-responsive">
-            <table class="table mt-5">
-                <thead class="table-secondary">
-                    <tr>
-                        <th scope="col">Image</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each products}}
-                    <tr>
-                        <td class="text-center">
-                            <img src="/product-images/{{this.product._id}}.jpg" alt="{{this.image}}" class="img-fluid"
-                                style="max-width: 8rem;">
-                        </td>
-                        <td class="px-4 py-3">
-                            <h6 style="font-weight: bold; color: #936e00;">{{this.product.Name}}</h6>
-                            <p class="d-none d-md-block"><small>{{this.product.Details}}</small></p>
-                            <!-- Hide details on mobile -->
-                        </td>
-                        <td style="width: 6rem;">
-                            {{#if this.product.discountedPrice}}
-                            <span
-                                style="text-decoration: line-through; color: red;  ">&#8377;{{this.product.Price}}</span>
-                            <span st>&#8377;{{this.product.discountedPrice}}</span>
-                            {{else}}
-                            <span style="font-weight: bolder;"> &#8377;{{this.product.Price}}</span>
-                            {{/if}}
-                        </td> --}}
+
                         <section>
                             <div class="container">
                                 <div class="table-responsive">
@@ -54,12 +21,12 @@
                                                         style="max-width: 8rem;">
                                                 </td>
                                                 <td class="px-4 py-3">
-                                                    <h6 class="product-name" style="font-weight: bold; color: #936e00;">
+                                                    <h6 class="product-name" style="font-weight: bold; font-family: initial; color: #936e00;">
                                                         {{this.product.Name}}
                                                     </h6>
-                                                    <p class="product-details"><small>{{this.product.Details}}</small>
+                                                    <p style="font-family: initial;" class="product-details"><small>{{this.product.Details}}</small>
                                                     </p> <!-- Hide details on mobile -->
-                                                    <p class="product-details"><small> Category:{{this.product.Category}}</small>
+                                                    <p style="font-family: initial;" class="product-details"><small> Category:{{this.product.Category}}</small>
                                                     </p>
                                             <p class="product-details"><small>size:{{this.product.size}}</small></p>
 

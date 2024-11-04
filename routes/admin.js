@@ -20,18 +20,18 @@ router.get('/', function(req, res, next) {
     
 
   })
-// router.get('/admin-signup',(req,res)=>{
-//   res.render('admin/admin-signup',{admin:true,hideHeader:true})
-// })
+router.get('/admin-signup',(req,res)=>{
+  res.render('admin/admin-signup',{admin:true,hideHeader:true})
+})
 
-// router.post('/admin-signup', (req, res) => {
-//   adminHelpers.doAdminSignup(req.body).then((response) => {
-//     req.session.loggedIn = true
-//     req.session.admin = response.admin
-//     res.redirect('/admin')
-//     console.log(req.body)
-//   })
-// })
+router.post('/admin-signup', (req, res) => {
+  adminHelpers.doAdminSignup(req.body).then((response) => {
+    req.session.loggedIn = true
+    req.session.admin = response.admin
+    res.redirect('/admin')
+    // console.log(req.body)
+  })
+})
 
 router.get('/admin-login', (req, res) => {
   const admin = req.session.admin
@@ -42,6 +42,7 @@ router.get('/admin-login', (req, res) => {
     req.session.loginErr = false
   }
 })
+
 
 router.post('/admin-login', (req, res) => {
   // console.log(req.session)
@@ -62,12 +63,12 @@ router.post('/admin-login', (req, res) => {
   })
 })
 
-router.get('/admin-logout', (req, res) => {
-  req.session.loggedIn=false
+// router.get('/admin-logout', (req, res) => {
+//   req.session.loggedIn=false
  
-    // Redirect to login page after successful logout
-    res.redirect('/admin/admin-login'); // Redirect to the login page
-  });
+//     // Redirect to login page after successful logout
+//     res.redirect('/admin/admin-login'); // Redirect to the login page
+//   });
 
 
 

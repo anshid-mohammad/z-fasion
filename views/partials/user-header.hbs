@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -194,6 +194,249 @@
             </div>
 
             <div class="dropdown" style="position: relative;">
+                <button 
+                 style="background-color: #936e00; 
+                 font-family: initial;
+                 font-weight: bold;
+           border-radius: 8px; 
+           padding: 10px 20px; 
+           font-size: 16px; 
+           color: #f8f9fa;
+           font-family: inherit; 
+           margin-right: 25px; 
+           transition: background-color 0.3s, border-color 0.3s, transform 0.3s;" 
+                
+                 class="btn dropdown-toggle" type="button" id="newDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{#if user}}
+                        {{user.name}}
+                    {{else}}
+                        Account
+                    {{/if}}
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="newDropdownButton">
+                    {{#if user}}
+                        <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                    {{else}}
+                        <li><a class="dropdown-item" href="/login">Login</a></li>
+                    {{/if}}
+                </ul>
+            </div>
+        </div>
+
+        <div class="under-div"></div>
+    </header>
+
+    <script>
+        const toggleButton = document.getElementById('toggle-button');
+        const menu = document.getElementById('menu');
+
+        toggleButton.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html> --}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z Fashion</title>
+    <link rel='stylesheet' href='/stylesheets/navbar.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Add Font Awesome -->
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgb(249, 246, 246); /* Set background to light */
+            padding: 10px 20px;
+            border-bottom: 1px solid #d5b87d; /* Bottom border */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        .brand img {
+            border-radius: 40px;
+            width: 50px; /* Fixed width for logo */
+        }
+
+        .fasion-navbar {
+            font-size: 30px;
+            font-family: initial;
+            margin-left: 10px;
+            letter-spacing: 5px; /* Space between letters */
+            color: #936e00; /* Dark gray text color */
+            text-shadow: 1px 1px 2px #999; /* Subtle text shadow */
+        }
+
+        .menu {
+            gap: 20px;
+            color: #936e00;
+            font-size: 20px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center; /* Center menu items */
+            flex: 1; /* Allow the menu to take available space */
+        }
+
+        .menu a {
+            font-family: initial;
+            font-weight: bold;
+            color: #936e00;
+            font-size: 18px;
+            text-decoration: none;
+            padding: 10px 15px; /* Padding for better click area */
+            transition: background-color 0.3s, color 0.3s; /* Transition effect */
+        }
+
+        .menu a:hover {
+            background-color: #d5b87d; /* Light gray background on hover */
+            border-radius: 5px;
+            color: white; /* Change text color on hover */
+        }
+
+        .profile-icon {
+            color: #936e00; /* Icon color */
+            font-size: 24px; /* Icon size */
+            margin-left: 20px; /* Space from other items */
+            cursor: pointer; /* Change cursor to pointer */
+            transition: color 0.3s; /* Transition effect */
+        }
+
+        .profile-icon:hover {
+            color: #d5b87d; /* Change color on hover */
+        }
+
+        .toggle-button {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .toggle-button span {
+            height: 3px;
+            width: 25px;
+            background: #333; /* Dark color for toggle button */
+            margin: 4px;
+            transition: all 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: rgb(234, 222, 196); /* Dropdown background color */
+                position: absolute;
+                top: 60px;
+                left: 0; /* Aligns dropdown menu to the left */
+                z-index: 2;
+            }
+
+            .menu.active {
+                display: flex;
+                justify-content: center; /* Center dropdown menu items */
+            }
+
+            .toggle-button {
+                display: flex;
+            }
+
+            .under-div {
+                height: 15px;
+                background-color: #d5b87d;
+                margin-bottom: 20px;
+            }
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            background-color: #936e00; /* Button background color */
+            border: none; /* Remove border */
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #f8f9fa;
+            font-family: inherit;
+            margin-right: 25px;
+            cursor: pointer; /* Change cursor on hover */
+            transition: background-color 0.3s, border-color 0.3s, transform 0.3s; /* Smooth transitions */
+        }
+
+        .dropdown-toggle:hover {
+            background-color: #d5b87d; /* Change background color on hover */
+            transform: scale(1.05); /* Slightly increase size on hover */
+        }
+
+        .dropdown-menu {
+            border-color: #936e00;
+            background-color: #f8f9fa; /* Dropdown background color */
+            border-radius: 10px;
+            padding: 10px;
+            min-width: 115px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        .dropdown-item {
+            color: #936e00; /* Dropdown item text color */
+            font-weight: 500;
+            padding: 8px 12px; /* Padding for dropdown items */
+            transition: background-color 0.3s; /* Smooth background color transition */
+        }
+
+        .dropdown-item:hover {
+            background-color: #d5b87d; /* Change background color on hover */
+            color: white; /* Change text color on hover */
+        }
+
+        #cart_count {
+            background-color: #ffc107; /* Badge background color */
+            color: #000; /* Badge text color */
+            border-radius: 10px;
+            padding: 2px 6px; /* Padding for the badge */
+            font-weight: bold;
+            font-size: 14px; /* Adjusted font size for the badge */
+        }
+
+        /* Centering dropdown button on small screens */
+        .dropdown-center {
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="nav-bar">
+        <div class="navbar">
+            <div class="brand">
+                <img src="/images/logo.png" alt="Logo" class="nav-img">
+            </div>
+            <p class="fasion-navbar">Z FASHION.</p>
+
+            <div class="toggle-button" id="toggle-button">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="menu" id="menu">
+                <a href="/" class="menu-name bi bi-house"></a>
+                <a class="menu-name" href="/cart">My Cart <span id="cart_count" class="badge badge-warning">{{cartCount}}</span></a>
+                <a class="menu-name" href="/orders">Orders</a>
+                <a href="/profile" class="profile-icon" title="Profile"><i class="fas fa-user-circle"></i></a> <!-- Profile icon -->
+            </div>
+
+            <div class="dropdown dropdown-center"> <!-- Added dropdown-center class -->
                 <button 
                  style="background-color: #936e00; 
                  font-family: initial;
