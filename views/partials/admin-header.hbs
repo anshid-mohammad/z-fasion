@@ -138,14 +138,14 @@
                 Account
                 {{/if}}
             </button>
-            <ul class="dropdown-menu" aria-labelledby="newDropdownButton" 
-                style="background-color: #f8f9fa; border-radius: 8px; padding: 10px; min-width: 115px; text-align: center;">
-                {{#if admin}}
-                <li><a class="dropdown-item" href="/admin-logout" style="color:#936e00; font-weight: 500; padding: 8px;">Logout</a></li>
-                {{else}}
-                <li><a class="dropdown-item" href="/admin-login" style="color:#936e00; font-weight: 500; padding: 8px;">Login</a></li>
-                {{/if}}
-            </ul>
+          <ul class="dropdown-menu" aria-labelledby="newDropdownButton" style="background-color: #f8f9fa; border-radius: 8px; padding: 10px;">
+    {{#if admin}}
+        <li><a class="dropdown-item" href="logout" style="color: #936e00; font-weight: 500;">Logout</a></li>
+    {{else}}
+        <li><a class="dropdown-item" href="/admin-login" style="color: #936e00; font-weight: 500;">Login</a></li>
+    {{/if}}
+</ul>
+
         </div>
 
         <div class="toggle-button" id="toggle-button">

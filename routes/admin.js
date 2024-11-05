@@ -6,7 +6,16 @@ const { response } = require('../app');
 const session = require('express-session');
 const userHelpers = require('../helpers/user-helpers');
 /* GET users listing. */
+const verifyLogin = (req, res, next) => {
+  if (req.session.loggedIn) {
+    next()
+  } else {
+    res.redirect('/admin/admin-login')
+  }
+}
+
 router.get('/', function(req, res, next) {
+  req.session.signIn = true;
   if(req.session.admin){
       productHelpers.getAllProducts().then((products)=>{
         res.render('admin/view-products',{admin:req.session.admin,products})
@@ -14,14 +23,14 @@ router.get('/', function(req, res, next) {
       })
 
   }else{
-    res.render('admin/admin-login',{hideHeader:true});
+    res.render('admin/admin-login',{hideheader:true});
 
   }
     
 
   })
 router.get('/admin-signup',(req,res)=>{
-  res.render('admin/admin-signup',{admin:true,hideHeader:true})
+  res.render('admin/admin-signup',{hideheader:true})
 })
 
 router.post('/admin-signup', (req, res) => {
@@ -36,9 +45,9 @@ router.post('/admin-signup', (req, res) => {
 router.get('/admin-login', (req, res) => {
   const admin = req.session.admin
   if (req.session.loggedIn) {
-    res.redirect('/admin/admin-login',{hideHeader:true})
+    res.redirect('/admin/admin-login',{hideheader:true})
   } else {
-    res.render('admin/admin-login', { loginErr: req.session.loginErr, hideHeader: true, })
+    res.render('admin/admin-login', { loginErr: req.session.loginErr, hideheader: true, })
     req.session.loginErr = false
   }
 })
@@ -63,17 +72,21 @@ router.post('/admin-login', (req, res) => {
   })
 })
 
-// router.get('/admin-logout', (req, res) => {
-//   req.session.loggedIn=false
- 
-//     // Redirect to login page after successful logout
-//     res.redirect('/admin/admin-login'); // Redirect to the login page
-//   });
+router.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.log('Error destroying session:', err);
+      return res.redirect('/admin'); // Redirect back to dashboard if an error occurs
+    }
+    res.redirect('/admin/admin-login'); // Redirect to login page after logout
+  });
+});
 
 
 
 
-router.get('/add-product',(req,res)=>{
+
+router.get('/add-product',verifyLogin,(req,res)=>{
   res.render('admin/add-product',{admin:req.session.admin})
 })
 router.post('/add-product', (req, res) => {
@@ -180,5 +193,16 @@ router.get('/view-orders', async (req, res) => {
 //       res.status(500).json({ error: "Error updating order status." });
 //   }
 // });
+router.get('/view-ordered-product', verifyLogin, async (req, res) => {
+  const orderId = req.query.orderId;
+
+  try {
+      let orderedProductDetails = await productHelpers.getorderedProductDetailsAdmin(orderId);
+      res.render('admin/view-ordered-product', { admin: req.session.admin, orderedProductDetails });
+  } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+  }
+});
 
 module.exports = router;

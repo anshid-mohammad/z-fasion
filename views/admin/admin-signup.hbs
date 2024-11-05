@@ -1,29 +1,4 @@
-{{!-- <section class="signup-sec">
-    <div class="">
-        <div class="form-signup">
-            <form action="/admin/admin-signup" method="post" class="bg-light rounded-3 p-4 p-md-5">
-                <h1 class="h3 mb-4 fw-normal text-center">Admin Sign-in</h1>
 
-                <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingInput" name="name" placeholder="name">
-                    <label for="floatingInput">Name</label>
-                </div>
-                <div class="form-floating">
-                    <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
-                    <label for="floatingInput">Email address</label>
-                </div>
-                <div class="form-floating">
-                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
-                    <label for="floatingPassword">Password</label>
-                </div>
-
-                <a class="float-right" href="/admin/admin-login">Already have an account ?</a>
-
-                <button class="w-100 btn btn-lg btn-primary my-3" type="submit">Signup</button>
-            </form>
-        </div>
-    </div>
-</section> --}}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,6 +12,86 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
   <link rel='stylesheet' href='/stylesheets/login.css' />
   <style>
+    .main-text{
+    color: #7c540e;
+
+font-size: 4rem;
+}
+.subtext-login{
+   font-size: 17px;
+   color: #7c540e;
+}
+.form-control{
+ 
+   
+    width: 100%;
+    padding: 12px;
+    border-radius: 25px;
+    border: 1px solid #e0e0e0;
+    outline: none;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    transition: all 0.2s ease;
+   
+
+}
+.d-flex{
+    background-color: aqua;
+    height: 20px;
+    width: 12rem;
+  
+}
+
+.btn-login{
+   
+   
+    height: 3rem;
+           margin-top: 2rem;
+        background-color: #c58e58; /* Bootstrap primary color */
+        color: white; /* Text color */
+        border: none; /* No border */
+        border-radius: 30px; /* Rounded corners */
+        padding: 10px 20px; /* Padding for size */
+        font-size: 1rem; /* Base font size */
+        transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+        /* Full width *
+        margin-left: 8rem;
+        cursor: pointer;
+    }
+    @media (min-width: 768px) {  Medium devices (md) */
+}
+
+
+    .btn-login:hover{
+        background-color: #7a5e03; /* Darker on hover */
+        transform: scale(1.05); /* Slight zoom effect */
+    }
+
+    .btn-login:active{
+        transform: scale(0.95); /* Slight shrink on click */
+    }
+    .new-account{
+        margin-left: 10rem;
+        margin-top: 2rem;
+        float: left;
+        color: #7c540e;
+    }
+    .signup-link{
+        margin-top: 30px;
+        float: left;
+        color: #0b0b0b;
+        font-weight: bold;
+        
+    }
+    .email-color{
+        color: #7c540e;
+
+    }
+
+
+
+
+
     .password-toggle {
       cursor: pointer;
     }

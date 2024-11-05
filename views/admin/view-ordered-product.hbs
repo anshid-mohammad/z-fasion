@@ -68,11 +68,13 @@
                     <div class="card-body d-flex flex-column">
                         <h5 style="font-family: initial;" class="card-title">{{this.productName}}</h5>
                         
-                        <p style="font-family: initial;" class="card-text">{{this.Catogery}}</p>
+                        <p style="font-family: initial;" class="card-text">Placed</p>
+                                                <p style="font-family: initial;" class="card-text">{{this.productsize}}</p>
+
                         <p class="card-text fw-normal">Quantity: {{this.quantity}}</p>
 
                     </div>
-                        <a href="/product-details/{{this._id}}" class="btn btn-details">Details</a>
+                        {{!-- <a href="/product-details/{{this._id}}" class="btn btn-details">placed</a> --}}
 
                 </div>
             </div>

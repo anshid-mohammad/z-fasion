@@ -158,6 +158,43 @@ getPlacedProductDetails: () => {
 //         }
 //     });
 // }
+// 
+getorderedProductDetailsAdmin: (orderId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let productDetails = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
+                {
+                    $match: { _id: new ObjectId(orderId) } // Match by orderId instead of userId
+                },
+                {
+                    $unwind: "$products"
+                },
+                {
+                    $lookup: {
+                        from: collection.PRODUCT_COLLECTION,
+                        localField: "products.item",
+                        foreignField: "_id",
+                        as: "productDetails"
+                    }
+                },
+                {
+                    $unwind: "$productDetails"
+                },
+                {
+                    $project: {
+                        _id: '$productDetails._id',
+                        productName: "$productDetails.Name",
+                        price: { $toDouble: "$productDetails.Price" },
+                        quantity: "$products.quantity",
+                    }
+                }
+            ]).toArray();
+            resolve(productDetails);
+        } catch (error) {
+            reject(error);
+        }
+    });
+},
 
 
 };
